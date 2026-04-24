@@ -1,4 +1,6 @@
-FROM maven:3.9.6-eclipse-temurin-17   # Maven + Java base image
+FROM maven:3.9.6-eclipse-temurin-17
+
+# Maven + Java base image
 
 # Install AWS CLI v2 and Docker client
 RUN apt-get update && apt-get install -y unzip curl docker.io \
