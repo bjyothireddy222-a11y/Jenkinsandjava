@@ -11,3 +11,15 @@ RUN apt-get update && apt-get install -y unzip curl docker.io \
     && aws --version
 
 WORKDIR /workspace
+
+# Copy project files
+COPY . .
+
+# Build the project using Maven
+RUN mvn clean package
+
+# Expose application port
+EXPOSE 8080
+
+# Run the generated jar
+CMD ["java","-jar","target/*.jar"]
