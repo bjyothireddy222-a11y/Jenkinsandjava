@@ -8,24 +8,53 @@
     <groupId>com.example</groupId>
     <artifactId>java-demo</artifactId>
     <version>1.0</version>
-    <packaging>war</packaging>
+
+    <!-- IMPORTANT -->
+    <packaging>jar</packaging>
 
     <name>java-demo</name>
+
+    <properties>
+        <java.version>17</java.version>
+        <spring-boot.version>3.2.5</spring-boot.version>
+    </properties>
+
+    <dependencies>
+
+        <!-- Spring Boot Web -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
+
+    </dependencies>
 
     <build>
         <finalName>java-demo</finalName>
 
         <plugins>
+
+            <!-- Spring Boot Plugin -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
+            </plugin>
+
+            <!-- Java Compiler -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>3.3.1</version>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
 
                 <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <source>17</source>
+                    <target>17</target>
                 </configuration>
 
             </plugin>
+
         </plugins>
 
     </build>
