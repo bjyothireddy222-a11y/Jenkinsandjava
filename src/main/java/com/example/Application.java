@@ -1,17 +1,19 @@
 package com.example;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.*;
+
+@SpringBootApplication
+@RestController
 public class Application {
 
     public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
 
-        System.out.println("Java App Running Successfully!");
-
-        while (true) {
-            try {
-                Thread.sleep(10000);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+    @GetMapping("/")
+    public String home() {
+        return "🚀 Java App Running Successfully!";
     }
 }
