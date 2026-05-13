@@ -19,7 +19,7 @@ COPY . .
 RUN mvn clean package
 
 # Expose application port
-EXPOSE 8080
+EXPOSE 8000
 
 # Run the generated jar
 CMD ["java","-jar","target/*.jar"]
