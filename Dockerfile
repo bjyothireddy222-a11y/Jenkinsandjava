@@ -1,25 +1,20 @@
-FROM maven:3.9.6-eclipse-temurin-17
+# ---------- STAGE 1: BUILD ----------
+FROM maven:3.9.6-eclipse-temurin-17 AS build
 
-# Maven + Java base image
+WORKDIR /app
 
-# Install AWS CLI v2 and Docker client
-RUN apt-get update && apt-get install -y unzip curl docker.io \
-    && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
-    && unzip awscliv2.zip \
-    && ./aws/install \
-    && rm -rf awscliv2.zip aws \
-    && aws --version
-
-WORKDIR /workspace
-
-# Copy project files
 COPY . .
 
-# Build the project using Maven
-RUN mvn clean package
+RUN mvn clean package -DskipTests
 
-# Expose application port
+
+# ---------- STAGE 2: RUNTIME ----------
+FROM eclipse-temurin:17-jre
+
+WORKDIR /app
+
+COPY --from=build /app/target/*.jar app.jar
+
 EXPOSE 8000
 
-# Run the generated jar
-CMD ["java","-jar","target/*.jar"]
+ENTRYPOINT ["java","-jar","app.jar"]
