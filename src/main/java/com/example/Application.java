@@ -1,54 +1,17 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-         https://maven.apache.org/xsd/maven-4.0.0.xsd">
+package com.example;
 
-    <modelVersion>4.0.0</modelVersion>
+public class Application {
 
-    <!-- Spring Boot Parent -->
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.5</version>
-        <relativePath/>
-    </parent>
+    public static void main(String[] args) {
 
-    <groupId>com.example</groupId>
-    <artifactId>java-demo</artifactId>
-    <version>1.0</version>
+        System.out.println("Java App Running Successfully!");
 
-    <name>java-demo</name>
-
-    <!-- IMPORTANT -->
-    <packaging>jar</packaging>
-
-    <properties>
-        <java.version>17</java.version>
-    </properties>
-
-    <dependencies>
-
-        <!-- Spring Boot Web -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-    </dependencies>
-
-    <build>
-        <finalName>java-demo</finalName>
-
-        <plugins>
-
-            <!-- Creates executable jar -->
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-
-        </plugins>
-
-    </build>
-
-</project>
+        while (true) {
+            try {
+                Thread.sleep(10000);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
